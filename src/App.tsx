@@ -1,31 +1,32 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Table} from "@navikt/ds-react";
 
-// interface User {
-//     name: String
-// }
+interface User {
+    name: String
+}
 
 function App() {
-    // const [isLoading, setIsLoading] = useState(true)
-    // const [users, setUsers] = useState<User[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [users, setUsers] = useState<User[]>([])
 
     useEffect(() => {
-        // const res = fetch('api/users').then(res => {
-        //     console.log("Hallos")
-        //     console.log(res)
-        // }).catch(e => {
-        //     console.log(e)
-        // }).finally(() => setIsLoading(false))
+        const res = fetch('api/users').then(res => {
+            console.log("Hallos")
+            console.log(res)
+
+        }).catch(e => {
+            console.log(e)
+        }).finally(() => setIsLoading(false))
     }, [])
 
-    // if(isLoading) {
-    //     return <div>Loading...</div>
-    // }
+    if(isLoading) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div className="App">
             <header className="App-header">
-                <Button>Ba bom bi bom</Button>
+                <Button>Testknapp</Button>
             </header>
 
             <Table>
@@ -36,12 +37,13 @@ function App() {
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    <Table.DataCell>HALO</Table.DataCell>
-                    {/*{users.map((user: User, i) => {*/}
-                    {/*    <Table.Row key={i}>*/}
-                    {/*        <Table.DataCell>{user.name}</Table.DataCell>*/}
-                    {/*    </Table.Row>*/}
-                    {/*})}*/}
+                    {users.map((user: User, i) => {
+                        return (
+                            <Table.Row key={i}>
+                                <Table.DataCell>{user.name}</Table.DataCell>
+                            </Table.Row>
+                        )
+                    })}
                 </Table.Body>
             </Table>
         </div>
