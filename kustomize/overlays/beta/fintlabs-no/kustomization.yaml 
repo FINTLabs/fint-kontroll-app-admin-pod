@@ -11,4 +11,4 @@ patches:
           value: beta
     target:
       kind: Application
-      name: fint-kontroll-role-pod
+      name: fint-kontroll-app-admin-pod

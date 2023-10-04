@@ -1,11 +1,11 @@
 apiVersion: fintlabs.no/v1alpha1
 kind: Application
 metadata:
-  name: fint-kontroll-role-pod
+  name: fint-kontroll-app-admin-pod
 spec:
   port: 7100
   orgId: fintlabs.no
-  image: ghcr.io/fintlabs/fint-kontroll-role-pod
+  image: ghcr.io/fintlabs/fint-kontroll-app-admin-pod
   prometheus:
     enabled: true
     port: "7100"

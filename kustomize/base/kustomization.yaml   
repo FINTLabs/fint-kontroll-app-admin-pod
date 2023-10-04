@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
   - application.yaml
 commonLabels:
-  app.kubernetes.io/name: fint-kontroll-role-pod
-  app.kubernetes.io/instance: fint-kontroll-role-pod_fintlabs-no
+  app.kubernetes.io/name: fint-kontroll-app-admin-pod
+  app.kubernetes.io/instance: fint-kontroll-app-admin-pod_fintlabs-no
   app.kubernetes.io/version: "latest"
   app.kubernetes.io/managed-by: GA
   app.kubernetes.io/component: podlet
