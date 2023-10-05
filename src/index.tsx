@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { makeServer } from "./miragejs/server"
+import {BrowserRouter} from "react-router-dom";
 
 
 if (process.env.NODE_ENV === "development") {
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <App/>
+        <BrowserRouter basename={"/ressurser"}>
+            <App/>
+        </BrowserRouter>
     </React.StrictMode>
 );
 
