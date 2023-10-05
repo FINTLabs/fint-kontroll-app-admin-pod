@@ -42,9 +42,11 @@ export const ResourcesTableComponent = () =>  {
             <Table.Body>
             {isLoading
                 ?
-                    <TableDatacellStyled colSpan={5} >
-                        <Loader size="3xlarge" title="Laster" className="loader" />
-                    </TableDatacellStyled>
+                    <Table.Row key={1}>
+                        <TableDatacellStyled colSpan={5} >
+                            <Loader size="3xlarge" title="Laster" className="loader" />
+                        </TableDatacellStyled>
+                    </Table.Row>
                 :
 
                     resources.map((resource: Resource, i) => {
