@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { makeServer } from "./miragejs/server"
 import {BrowserRouter} from "react-router-dom";
+import GlobalStyle from "./global-styles";
 
 
 if (process.env.NODE_ENV === "development") {
@@ -16,6 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <BrowserRouter>
+            <GlobalStyle />
             <App/>
         </BrowserRouter>
     </React.StrictMode>

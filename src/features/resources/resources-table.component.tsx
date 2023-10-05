@@ -1,34 +1,12 @@
 import {Table} from "@navikt/ds-react";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { InformationSquareIcon } from '@navikt/aksel-icons';
+import {Resource} from "@utils/types";
 
-interface Resource {
-    id: number,
-    resourceId: string,
-    resourceName: string,
-    resourceType: string,
-    resourceLimit: number
+interface ResourcesTableComponentProps {
+    resources: Resource[]
 }
-export const ResourcesTableComponent = () =>  {
-    const [isLoading, setIsLoading] = useState(true)
-    const [resources, setResources] = useState<Resource[]>([])
-
-    useEffect(() => {
-        getResources()
-        setIsLoading(false)
-    }, []);
-
-    const getResources = () => {
-        fetch('api/resources')
-            .then(res => res.json())
-            .then((data) => setResources(data.resources))
-            .catch(e => console.log(e))
-    }
-
-    if(isLoading) {
-        return <div>Loading...</div>
-    }
-
+export const ResourcesTableComponent = (props: ResourcesTableComponentProps) =>  {
     return (
         <Table>
             <Table.Header>
@@ -41,7 +19,7 @@ export const ResourcesTableComponent = () =>  {
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {resources.map((resource: Resource, i) => {
+                {props.resources.map((resource: Resource, i) => {
                     return (
                         <Table.Row key={i}>
                             <Table.DataCell>{resource.resourceName}</Table.DataCell>
@@ -49,8 +27,8 @@ export const ResourcesTableComponent = () =>  {
                             <Table.DataCell>{resource.resourceLimit}</Table.DataCell>
                             <Table.DataCell>{resource.resourceLimit}</Table.DataCell>
                             <Table.DataCell>
-                                <a href={`/${resource.id}`}>
-                                    Se detaljer <InformationSquareIcon  />
+                                <a href={`/${resource.id}`} className="flex-center-vertically">
+                                    Se detaljer <InformationSquareIcon className="margin-left-1-x" />
                                 </a>
                             </Table.DataCell>
                         </Table.Row>
