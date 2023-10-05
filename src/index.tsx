@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <BrowserRouter basename={"/ressurser"}>
+        <BrowserRouter>
             <App/>
         </BrowserRouter>
     </React.StrictMode>

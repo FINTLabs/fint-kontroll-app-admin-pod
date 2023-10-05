@@ -49,7 +49,7 @@ export const ResourcesTableComponent = () =>  {
                             <Table.DataCell>{resource.resourceLimit}</Table.DataCell>
                             <Table.DataCell>{resource.resourceLimit}</Table.DataCell>
                             <Table.DataCell>
-                                <a href={`/ressurs/${resource.id}`}>
+                                <a href={`/${resource.id}`}>
                                     Se detaljer <InformationSquareIcon  />
                                 </a>
                             </Table.DataCell>
