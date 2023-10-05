@@ -10,18 +10,22 @@ function App() {
     const [users, setUsers] = useState<User[]>([])
 
     useEffect(() => {
-        const res = fetch('api/users').then(res => {
-            console.log("Hallos")
-            console.log(res)
-
-        }).catch(e => {
-            console.log(e)
-        }).finally(() => setIsLoading(false))
+        getUsers()
+        setIsLoading(false)
     }, [])
+
+    const getUsers = () => {
+        fetch('api/users')
+            .then(res => res.json())
+            .then((data) => setUsers(data.users))
+            .catch(e => console.log(e))
+    }
 
     if(isLoading) {
         return <div>Loading...</div>
     }
+
+    console.log(users)
 
     return (
         <div className="App">

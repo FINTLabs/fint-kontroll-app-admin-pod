@@ -5,22 +5,25 @@ export function makeServer({ environment = "test" } = {}) {
         environment,
 
         models: {
-            user: Model,
+            users: Model,
         },
 
         seeds(server) {
-            server.create("user", { name: "Bob" })
-            server.create("user", { name: "Alice" })
+            server.create("user", {
+                name: "Bob" ,
+                age: "22"
+            })
+            server.create("user", {
+                name: "Alice",
+                age: "20"
+            })
         },
 
         routes() {
-            this.namespace = "api"
+            this.namespace = "api/users"
 
-            this.get("/users", (schema) => {
-                return [
-                    {user: "Bob"},
-                    {user: "Alice"}
-                ]
+            this.get("/", (schema) => {
+                return schema.users.all()
             })
         },
     })
