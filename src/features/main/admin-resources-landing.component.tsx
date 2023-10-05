@@ -1,7 +1,6 @@
 import {ResourcesTableComponent} from "../resources/resources-table.component";
 import React, {useEffect, useState} from "react";
 import {Resource} from "@utils/types";
-import {ResourcesInfoComponent} from "../resources/resource-info-component";
 import {ResourcesHeaderComponent} from "../resources/information-header.component";
 
 export const AdminResourcesLandingComponent = () => {
