@@ -1,4 +1,4 @@
-export const ResourceInfoComponent = () => {
+export const ResourcesInfoComponent = () => {
     return (
         <div>
             <div>
