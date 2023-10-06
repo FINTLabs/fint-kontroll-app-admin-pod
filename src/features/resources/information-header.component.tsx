@@ -1,5 +1,6 @@
-import {Button, Search} from "@navikt/ds-react";
+import {Button} from "@navikt/ds-react";
 import styled from "styled-components";
+import {ResourcesSearchComponent} from "./resources-search.component";
 
 const ResourcesInfoWrapper = styled.div`
     display: flex;
@@ -9,6 +10,7 @@ const ResourcesInfoWrapper = styled.div`
     .flex {
         display: flex;
         gap: 1rem;
+        align-items: flex-end;
     }
 `
 
@@ -18,7 +20,7 @@ export const ResourcesHeaderComponent = () => {
             <h2>Ressursadmin</h2>
             <div className="flex">
                 <div>
-                    <Search label="Søk her" />
+                    <ResourcesSearchComponent />
                 </div>
                 <div>
                     <Button>Velg enhet</Button>

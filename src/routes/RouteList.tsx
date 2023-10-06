@@ -7,7 +7,7 @@ const RouteList = () => {
     return (
         <Routes>
             <Route path="/" element={<AdminResourcesLandingComponent/>}/>
-            <Route path={`/info/:id`} element={<ResourcesInfoComponent/>}/>
+            <Route path="/info/:id" element={<ResourcesInfoComponent/>}/>
         </Routes>
     )
 }

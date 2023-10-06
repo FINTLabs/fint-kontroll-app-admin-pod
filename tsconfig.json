@@ -6,13 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "paths": {
-      "@features/*": ["src/features/*"],
-      "@miragejs/*": ["src/miragejs/*"],
-      "@utils/*": ["utils/*"]
-    },
     "allowJs": true,
-    "baseUrl": "./src",
     "declarations": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -25,10 +19,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
-    "src",
     "./cypress.d.ts"
   ]
 }

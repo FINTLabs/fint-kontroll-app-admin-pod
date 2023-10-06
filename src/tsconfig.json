@@ -1,11 +1,16 @@
 {
-	"extends": "./tsconfig.json",
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
+		"baseUrl": ".",
 		"target": "es2015",
 		"module": "esnext",
 		"jsx": "react",
-		"lib": ["dom"]
+		"lib": ["dom"],
+		"paths": {
+			"@features/*": ["./features/*"],
+			"@miragejs/*": ["./miragejs/*"],
+			"@utils/*": ["./utils/*"]
+		}
 	},
-	"include": ["src"],
 	"exclude": ["node_modules"]
 }
