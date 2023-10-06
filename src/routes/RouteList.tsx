@@ -6,8 +6,8 @@ import {AdminResourcesLandingComponent} from "../features/main/admin-resources-l
 const RouteList = () => {
     return (
         <Routes>
-            <Route path="/" element={<AdminResourcesLandingComponent/>}/>
-            <Route path="/info/:id" element={<ResourcesInfoComponent/>}/>
+            <Route path="/app-admin" element={<AdminResourcesLandingComponent/>}/>
+            <Route path="/app-admin/info/:id" element={<ResourcesInfoComponent/>}/>
         </Routes>
     )
 }
