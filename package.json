@@ -21,7 +21,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"port-forward-user": "kubectl -n fintlabs-no port-forward services/fint-kontroll-user-catalog 8060:8080"
+		"port-forward-user": "kubectl -n fintlabs-no port-forward services/fint-kontroll-resource-catalog 8120:8080"
 	},
 	"eslintConfig": {
 		"extends": [

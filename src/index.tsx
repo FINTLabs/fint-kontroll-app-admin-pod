@@ -8,7 +8,7 @@ import GlobalStyle from "./global-styles";
 
 
 if (process.env.NODE_ENV === "development") {
-    makeServer({ environment: "development" })
+    // makeServer({ environment: "development" })
 }
 
 const root = ReactDOM.createRoot(

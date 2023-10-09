@@ -1,7 +1,7 @@
 import {Loader, Table} from "@navikt/ds-react";
 import React, {useEffect, useState} from "react";
 import { InformationSquareIcon } from '@navikt/aksel-icons';
-import { Resource } from "@utils/types";
+import { Resource } from "../../utils/types";
 import styled from "styled-components";
 
 const TableStyled = styled(Table)`

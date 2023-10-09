@@ -5,7 +5,8 @@ export function makeServer({ environment = "test" } = {}) {
         environment,
 
         models: {
-            resources: Model
+            resources: Model,
+            configuration: Model
         },
 
         seeds(server) {
@@ -60,16 +61,26 @@ export function makeServer({ environment = "test" } = {}) {
                     "student"
                 ]
             })
+
+            server.create("configuration", {
+                id: 148,
+                name: "fint-kontroll",
+                basePath: "/beta/fintlabs-no"
+            })
         },
 
         routes() {
-            this.namespace = "api/resources"
-            this.get("/", (schema) => {
+            this.namespace = "api"
+            this.get("/resources", (schema) => {
                 return schema.resources.all()
             })
 
             this.get("/resource/info/:id", (schema) => {
                 return schema.resources.all()
+            })
+
+            this.get("/layout/configuration", (schema) => {
+                return schema.configuration.all()
             })
         },
     })
