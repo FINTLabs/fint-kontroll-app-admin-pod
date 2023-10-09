@@ -38,7 +38,7 @@ export const ResourcesTableComponent = () =>  {
 
     }, []);
     const getResources = () => {
-        fetch('api/resources')
+        fetch('api/users')
             .then(res => res.json())
             .then((data) => setResources(data.resources))
             .catch(e => console.log(e)) // TODO: Implement error handling
@@ -69,10 +69,10 @@ export const ResourcesTableComponent = () =>  {
                         resources.map((resource: Resource, i) => {
                             return (
                                 <Table.Row key={i}>
-                                <Table.DataCell>{resource.resourceName}</Table.DataCell>
-                                <Table.DataCell>{resource.resourceType}</Table.DataCell>
-                                <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
-                                <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
+                                <Table.DataCell>1</Table.DataCell>
+                                <Table.DataCell>2</Table.DataCell>
+                                <Table.DataCell align="right">3</Table.DataCell>
+                                <Table.DataCell align="right">4</Table.DataCell>
                                 <Table.DataCell>
                                     <a href={`/app-admin/info/${resource.id}`} className="flex-center-vertically">
                                         Se detaljer <InformationSquareIcon className="margin-left-1-x" />
