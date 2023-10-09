@@ -7,8 +7,8 @@ import {BrowserRouter} from "react-router-dom";
 import GlobalStyle from "./global-styles";
 
 
-if (process.env.NODE_ENV === "development") {
-    // makeServer({ environment: "development" })
+if (process.env.Localtest === 'true') {
+    makeServer({ environment: "development" })
 }
 
 const root = ReactDOM.createRoot(

@@ -1,5 +1,3 @@
-import { IResource, IResourcePage } from "../Context/types";
-
 const getBaseUrl = () => {
     return fetch('api/layout/configuration');
 }
