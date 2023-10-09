@@ -5,7 +5,7 @@
 		"target": "es2015",
 		"module": "esnext",
 		"jsx": "react",
-		"lib": ["dom"],
+		"lib": ["dom", "dom.Iterable"],
 		"paths": {
 			"@features/*": ["./features/*"],
 			"@miragejs/*": ["./miragejs/*"],
