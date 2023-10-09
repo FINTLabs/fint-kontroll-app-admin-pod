@@ -35,7 +35,7 @@ export const ResourcesTableComponent = () =>  {
 
     useEffect(() => {
         const getResources = async () => {
-            await fetch('api/users')
+            await fetch('api/resources')
                 .then(res => res.json())
                 .then((data) => setResources(data.resources))
                 .catch(e => console.log(e)) // TODO: Implement error handling
