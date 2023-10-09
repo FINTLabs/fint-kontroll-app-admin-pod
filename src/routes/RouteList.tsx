@@ -10,7 +10,7 @@ const RouteList = () => {
     return (
         <Routes>
             <Route path={`${basePath}/app-admin`} element={<AdminResourcesLandingComponent/>}/>
-            <Route path="/app-admin/info/:id" element={<ResourcesInfoComponent/>}/>
+            <Route path={`${basePath}/app-admin/info/:id`} element={<ResourcesInfoComponent/>}/>
         </Routes>
     )
 }

@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import GlobalStyle from "./global-styles";
 
 
-if (process.env.Localtest === 'true') {
+if (process.env.LOCAL_TEST === 'true') {
     makeServer({ environment: "development" })
 }
 
