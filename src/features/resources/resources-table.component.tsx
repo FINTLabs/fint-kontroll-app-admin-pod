@@ -77,7 +77,7 @@ export const ResourcesTableComponent = () =>  {
                                 <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                 <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                 <Table.DataCell>
-                                    <a href={`info/${resource.id}`} className="flex-center-vertically">
+                                    <a href={`app-admin/info/${resource.id}`} className="flex-center-vertically">
                                         Se detaljer <InformationSquareIcon className="margin-left-1-x" />
                                     </a>
                                 </Table.DataCell>
