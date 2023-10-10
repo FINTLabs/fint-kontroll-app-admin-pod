@@ -1,4 +1,4 @@
-import {Loader, Table} from "@navikt/ds-react";
+import {Link, Loader, Table} from "@navikt/ds-react";
 import React, {useEffect, useState} from "react";
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Resource } from "../../utils/types";
@@ -77,9 +77,9 @@ export const ResourcesTableComponent = () =>  {
                                 <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                 <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                 <Table.DataCell>
-                                    <a href={`app-admin/info/${resource.id}`} className="flex-center-vertically">
+                                    <Link href={`app-admin/info/${resource.id}`} className="flex-center-vertically">
                                         Se detaljer <InformationSquareIcon className="margin-left-1-x" />
-                                    </a>
+                                    </Link>
                                 </Table.DataCell>
                             </Table.Row>
                             )
