@@ -1,8 +1,9 @@
-import {Link, Loader, Table} from "@navikt/ds-react";
+import {Loader, Table} from "@navikt/ds-react";
 import React, {useEffect, useState} from "react";
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Resource } from "../../utils/types";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const TableStyled = styled(Table)`
     thead {
@@ -77,9 +78,9 @@ export const ResourcesTableComponent = () =>  {
                                 <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                 <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                 <Table.DataCell>
-                                    <Link href={`app-admin/info/${resource.id}`} className="flex-center-vertically">
+                                    <NavLink to={`app-admin/info/${resource.id}`} className="flex-center-vertically" >
                                         Se detaljer <InformationSquareIcon className="margin-left-1-x" />
-                                    </Link>
+                                    </NavLink>
                                 </Table.DataCell>
                             </Table.Row>
                             )
