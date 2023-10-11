@@ -44,7 +44,7 @@ const ResourceRepository = {
     getBaseUrl,
     getResources,
     getResourcePage,
-    getResourceById,
+    getResourceById
 };
 
 export default ResourceRepository;

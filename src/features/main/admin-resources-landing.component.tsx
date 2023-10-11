@@ -1,6 +1,6 @@
 import {ResourcesTableComponent} from "../resources/resources-table.component";
 import React from "react";
-import {ResourcesHeaderComponent} from "../resources/information-header.component";
+import {ResourcesHeaderComponent} from "../resources/resources-header.component";
 
 export const AdminResourcesLandingComponent = () => {
     return (

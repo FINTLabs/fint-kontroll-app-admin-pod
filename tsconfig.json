@@ -17,11 +17,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "paths": {
-      "@features/*": ["./features/*"],
-      "@miragejs/*": ["./miragejs/*"],
-      "@utils/*": ["./utils/*"]
-    }
   },
   "exclude": ["node_modules"]
 }

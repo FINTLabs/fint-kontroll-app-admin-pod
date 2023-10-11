@@ -16,22 +16,24 @@ export type ResourcesContextState = {
     searchValue: (searchString: string) => void;
     updateCurrentPage: (currentPage: number) => void;
     resources: IResource[];
+    getResourceById: (id: string) => void;
+
 };
 
 export interface IResource {
-    id: number;
-    resourceId: string;
-    resourceName: string;
-    resourceType: string;
-    resourceLimit: number;
-    applicationAccessType: string;
-    applicationAccessRole: string;
     accessType: string;
+    applicationAccessRole: string;
+    applicationAccessType: string;
+    id: number;
     "platform": [],
+    resourceId: string;
+    resourceLimit: number;
+    resourceName: string;
     "resourceOwnerOrgUnitId": string,
     "resourceOwnerOrgUnitName": string,
+    resourceType: string;
     validForOrgUnits: IResourceItem[];
-    validForRoles: string;
+    validForRoles: string[];
 }
 
 export interface IResourceItem {
@@ -52,10 +54,14 @@ export interface IResourcePage {
 export type ResourceContextState = {
     basePath: string;
     resources: IResource[] | null;
+    resourceDetails: IResource | null;
+    getResourceById: (id: string) => void;
 };
 
 export const contextDefaultValues: ResourceContextState = {
         basePath: "/",
         resources: [],
+        resourceDetails: null,
+        getResourceById(): void {}
     }
 ;

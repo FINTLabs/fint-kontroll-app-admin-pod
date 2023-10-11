@@ -17,6 +17,7 @@ type Props = {
 const ResourceProvider = ({children}: Props) => {
     const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
     const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
+    const [resourceDetails, setResourceDetails] = useState<IResource | null>(contextDefaultValues.resourceDetails);
 
     useEffect(() => {
         const getBasePath = async () => {
@@ -24,7 +25,6 @@ const ResourceProvider = ({children}: Props) => {
                 .then(response => response.json()
                     .then(data => {
                         setBasePath(data.basePath)
-                        console.log("basePath i context", data.basePath)
                     })
                 )
                 .catch((err) => {
@@ -46,11 +46,22 @@ const ResourceProvider = ({children}: Props) => {
         getResources()
     }, [basePath]);
 
+    const getResourceById = (uri: string) => {
+        ResourceRepository.getResourceById(uri)
+            .then(response => response.json())
+            .then(data => {setResourceDetails(data)})
+            .catch((err) => {
+                console.error(err);
+            })
+    }
+
     return (
         <ResourceContext.Provider
             value={{
                 basePath,
-                resources
+                resources,
+                resourceDetails,
+                getResourceById
             }}
         >
             {children}
