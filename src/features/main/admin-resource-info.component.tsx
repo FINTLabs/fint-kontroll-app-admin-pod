@@ -15,11 +15,13 @@ export const AdminResourceInfoComponent = () => {
     const {basePath, getResourceById, resourceDetails} = useContext(ResourceContext)
     const {id} = useParams<string>()
 
+
+
     useEffect(() => {
-        if(id) {
+        if(id && !resourceDetails) {
             getResourceById(`${basePath === '/' ? '' : basePath}/api/resources/${id}`)
         }
-    }, [id])
+    }, [basePath, getResourceById, id, resourceDetails])
 
     if(!resourceDetails) {
         return null
