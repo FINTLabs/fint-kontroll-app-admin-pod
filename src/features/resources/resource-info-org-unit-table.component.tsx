@@ -1,5 +1,5 @@
 import {Table} from "@navikt/ds-react";
-import {IResource, IResourceItem} from "../../Context/types";
+import {IResourceItem} from "../../Context/types";
 
 interface ResourceInfoOrgUnitTableComponentProps {
     validForOrgUnits: IResourceItem[]
