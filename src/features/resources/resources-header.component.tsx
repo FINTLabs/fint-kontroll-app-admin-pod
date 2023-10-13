@@ -1,6 +1,4 @@
-import {Button} from "@navikt/ds-react";
 import styled from "styled-components";
-import {ResourcesSearchComponent} from "./resources-search.component";
 
 const ResourcesInfoWrapper = styled.div`
     display: flex;
