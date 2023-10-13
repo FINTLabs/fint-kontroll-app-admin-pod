@@ -1,12 +1,6 @@
-export interface IResourcesPage {
-    totalItems: number;
-    totalPages: number | any;
-    currentPage: number;
-}
-
 export type ResourcesContextState = {
     basePath: string;
-    page: IResourcesPage | null;
+    page: IResourcePage | null;
     currentPage: number;
     size: number;
     setSize: (size: number) => void;
@@ -42,26 +36,52 @@ export interface IResourceItem {
     orgunitId: string;
     orgUnitName: string;
     resourceLimit: number;
-
 }
 
 export interface IResourcePage {
     totalPages: number | any;
+    totalItems: number | any;
     currentPage: number;
     resources: IResource[];
 }
 
 export type ResourceContextState = {
     basePath: string;
+    currentPage: number;
+    getResourceById: (id: string) => void,
+    isAggregate: boolean,
+    isLoading: boolean,
+    itemsPerPage: number,
+    setIsLoading: (isLoading: boolean) => void,
+    organisationUnitId: number,
     resources: IResource[] | null;
     resourceDetails: IResource | null;
-    getResourceById: (id: string) => void;
+    resourcePage: IResourcePage | null;
+    resourceType: string,
+    setIsAggregate: (isAggregate: boolean) => void;
+    selected: number[];
+    setItemsPerPage: (paginationSize: number) => void,
+    setSelected: (selected: number[]) => void;
+    updateCurrentPage: (currentPage: number) => void;
 };
 
 export const contextDefaultValues: ResourceContextState = {
-        basePath: "/",
-        resources: [],
-        resourceDetails: null,
-        getResourceById(): void {}
-    }
-;
+    basePath: "/",
+    currentPage: 1,
+    getResourceById(): void {},
+    isAggregate: false,
+    isLoading: true,
+    itemsPerPage: 1,
+    setIsLoading(isLoading: boolean): void {},
+    setIsAggregate(isAggregate: boolean): void {},
+    organisationUnitId: 0,
+    resources: [],
+    resourceDetails: null,
+    resourcePage: null,
+    resourceType: "",
+    selected: [],
+    setItemsPerPage: (paginationSize: number) => void{},
+    setSelected(selected: number[]): void {
+    },
+    updateCurrentPage(): void {}
+};

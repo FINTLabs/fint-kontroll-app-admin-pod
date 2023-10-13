@@ -9,7 +9,7 @@ const getResources = (basePath: string) => {
 const getResourceById = (uri: string) => fetch(uri);
 
 const getResourcePage =
-    (basePath: string, resourcePage: number, userType: string, organisationUnitId: number[],
+    (basePath: string, currentPage: number, itemsPerPage: number, userType: string, organisationUnitId: number[],
      searchString: string, isAggregated: boolean) => {
         const baseUrl = `${basePath === '/' ? '' : basePath}/api/resources`;
         let queryParams = [];
@@ -31,8 +31,12 @@ const getResourcePage =
             queryParams.push(`orgUnits=${organisationUnitId}`);
         }
 
-        if (resourcePage) {
-            queryParams.push(`resourcePage=${resourcePage}`);
+        if (currentPage) {
+            queryParams.push(`page=${currentPage-1}`);
+        }
+
+        if (itemsPerPage) {
+            queryParams.push(`size=${itemsPerPage}`);
         }
 
         const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;

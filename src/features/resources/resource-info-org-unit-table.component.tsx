@@ -15,9 +15,9 @@ export const ResourceInfoOrgUnitTableComponent = ({validForOrgUnits}: ResourceIn
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {validForOrgUnits.map(unit => {
+                {validForOrgUnits.map((unit, i) => {
                     return (
-                        <Table.Row>
+                        <Table.Row key={i}>
                             <Table.DataCell>{unit.orgUnitName}</Table.DataCell>
                             <Table.DataCell align="right">{unit.orgunitId}</Table.DataCell>
                             <Table.DataCell align="right">{unit.resourceLimit}</Table.DataCell>
