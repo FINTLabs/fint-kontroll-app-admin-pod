@@ -36,6 +36,7 @@ const LoaderStyled = styled(Loader)`
 const PaginationWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
+    gap: 1rem;
     
     margin-top: 1rem;
 `

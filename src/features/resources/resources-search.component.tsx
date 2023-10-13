@@ -6,7 +6,7 @@ export const ResourcesSearchComponent = () => {
     const [searchString, setSearchString] = useState("")
 
     const handleSearch = () => {
-        console.log(searchString)
+        console.log(searchString) // When search or filter is used, implement a proper handler for this
     }
 
     return (

@@ -18,14 +18,6 @@ export const ResourcesHeaderComponent = () => {
     return (
         <ResourcesInfoWrapper>
             <h2>Ressursadmin</h2>
-            <div className="flex">
-                <div>
-                    <ResourcesSearchComponent />
-                </div>
-                <div>
-                    <Button>Velg enhet</Button>
-                </div>
-            </div>
         </ResourcesInfoWrapper>
     )
 }
