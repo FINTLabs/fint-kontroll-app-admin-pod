@@ -71,7 +71,7 @@ export const contextDefaultValues: ResourceContextState = {
     getResourceById(): void {},
     isAggregate: false,
     isLoading: true,
-    itemsPerPage: 1,
+    itemsPerPage: 5,
     setIsLoading(isLoading: boolean): void {},
     setIsAggregate(isAggregate: boolean): void {},
     organisationUnitId: 0,

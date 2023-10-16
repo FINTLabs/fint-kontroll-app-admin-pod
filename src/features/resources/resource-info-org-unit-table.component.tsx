@@ -6,7 +6,7 @@ interface ResourceInfoOrgUnitTableComponentProps {
 }
 export const ResourceInfoOrgUnitTableComponent = ({validForOrgUnits}: ResourceInfoOrgUnitTableComponentProps) => {
     return (
-        <Table>
+        <Table id="org-unit-table">
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Enhetsnavn</Table.HeaderCell>

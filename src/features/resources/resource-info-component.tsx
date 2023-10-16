@@ -40,7 +40,7 @@ export const ResourcesInfoComponent = ({resourceDetails}: ResourceInfoProps) => 
                 <Heading size="large" level="2">
                     {resourceName}
                 </Heading>
-                <ListStyled>
+                <ListStyled id="resource-info">
                     <li>
                         <Heading size="xsmall" level="3">Tilgangstype</Heading>
                         <BodyShort textColor="subtle">{accessType}</BodyShort>

@@ -54,13 +54,14 @@ export const ResourcesTableComponent = () => {
     let paginatedData = resourcePage ? resourcePage.resources : null
 
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLSelectElement | HTMLOptionElement>) => {
+        // @ts-ignore
         setItemsPerPage((parseInt(event.target.value, 10)))
         updateCurrentPage(1);
     };
 
     return (
         <>
-            <TableStyled>
+            <TableStyled id="resource-table">
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell scope="col">Ressurs</Table.HeaderCell>
@@ -88,7 +89,7 @@ export const ResourcesTableComponent = () => {
                                     <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                     <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                     <Table.DataCell>
-                                        <NavLink to={`info/${resource.id}`} className="flex-center-vertically">
+                                        <NavLink to={`info/${resource.id}`} className="flex-center-vertically" id={`resource-${i}`}>
                                             Se detaljer <InformationSquareIcon className="margin-left-1-x"/>
                                         </NavLink>
                                     </Table.DataCell>
@@ -101,13 +102,14 @@ export const ResourcesTableComponent = () => {
 
             <PaginationWrapper>
                 <Select label="Rader per side" size="small" onChange={handleChangeRowsPerPage} defaultValue={itemsPerPage}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
+                    <option value={5}>5</option>
+                    <option value={10}>10</option>
                     <option value={25}>25</option>
                     <option value={50}>50</option>
                 </Select>
                 {(resourcePage !== null && !isLoading) &&
                     <Pagination
+                        id="pagination"
                         page={currentPage}
                         onPageChange={updateCurrentPage}
                         count={Math.ceil(resourcePage?.totalItems / itemsPerPage)}
