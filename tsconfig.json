@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable"],
+    "target": "es6",
+    "lib": ["dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -18,8 +21,11 @@
     "strict": true,
   },
   "include": [
+    "src",
     "./cypress.d.ts",
     "**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
+
+

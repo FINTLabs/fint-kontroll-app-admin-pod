@@ -1,12 +1,15 @@
+import axios from "axios";
+import {IConfiguration, IResource, IResourcePage} from "../Context/types";
+
 const getBaseUrl = () => {
-    return fetch('api/layout/configuration');
+    return axios.get<IConfiguration>('api/layout/configuration');
 }
 
 const getResources = (basePath: string) => {
     const url = `${basePath === '/' ? '' : basePath}/api/resources`;
-    return fetch(url);
+    return axios.get<IResource[]>(url);
 }
-const getResourceById = (uri: string) => fetch(uri);
+const getResourceById = (uri: string) => axios.get<IResource>(uri);
 
 const getResourcePage =
     (basePath: string, currentPage: number, itemsPerPage: number, userType: string, organisationUnitId: number[],
@@ -41,7 +44,7 @@ const getResourcePage =
 
         const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
 
-        return fetch(url);
+        return axios.get<IResourcePage>(url);
     }
 
 const ResourceRepository = {

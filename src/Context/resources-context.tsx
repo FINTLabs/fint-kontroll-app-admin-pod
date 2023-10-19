@@ -6,6 +6,7 @@ import {
     IResourcePage
 } from "./types";
 import ResourceRepository from "../repositories/ResourceRepository";
+import {ErrorResponse} from "react-router-dom";
 
 export const ResourceContext = createContext<ResourceContextState>(
     contextDefaultValues
@@ -36,12 +37,8 @@ const ResourceProvider = ({children}: Props) => {
         const getBasePath = async () => {
             setIsLoading(true)
             ResourceRepository.getBaseUrl()
-                .then(response => response.json()
-                    .then(data => {
-                        setBasePath(data.basePath)
-                    })
-                )
-                .catch((err) => {
+                .then((response) => {setBasePath(response.data.basePath)})
+                .catch((err: ErrorResponse) => {
                     console.log(err);
                 })
                 .finally(() => setIsLoading(false))
@@ -50,17 +47,17 @@ const ResourceProvider = ({children}: Props) => {
     }, [])
 
     useEffect(() => {
-        const getResources = () => {
+        const getResources = async () => {
             if (basePath) {
                 setIsLoading(true)
-                ResourceRepository.getResources(basePath)
-                    .then(response => response.json())
-                    .then(data => setResources(data))
+                ResourceRepository.getResources(basePath).then(
+                    (response) => {setResources(response.data)}
+                )
                     .catch((err) => console.error(err))
                     .finally(() => setIsLoading(false))
             }
         }
-        getResources()
+        getResources().catch(err => console.error(err))
     }, [basePath]);
 
     useEffect(() => {
@@ -68,9 +65,8 @@ const ResourceProvider = ({children}: Props) => {
             if (basePath) {
                 setIsLoading(true)
                 ResourceRepository.getResourcePage(basePath, currentPage, itemsPerPage, resourceType, selected, searchString, isAggregate)
-                    .then(response => response.json())
-                    .then(data => setResourcePage(data))
-                    .catch((err) => console.error(err))
+                    .then((response) => setResourcePage(response.data))
+                    .catch((err: ErrorResponse) => console.error(err))
                     .finally(() => setIsLoading(false))
             }
         }
@@ -83,9 +79,8 @@ const ResourceProvider = ({children}: Props) => {
     const getResourceById = (uri: string) => {
         setIsLoading(true)
         ResourceRepository.getResourceById(uri)
-            .then((response: any) => response.json())
-            .then((data: IResource) => {setResourceDetails(data)})
-            .catch((err) => {
+            .then((response) => {setResourceDetails(response.data)})
+            .catch((err: ErrorResponse) => {
                 console.error(err);
             })
             .finally(() => setIsLoading(false))

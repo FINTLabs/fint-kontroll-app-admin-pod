@@ -45,6 +45,12 @@ export interface IResourcePage {
     resources: IResource[];
 }
 
+export interface IConfiguration {
+    basePath: string,
+    id: number,
+    name: string
+}
+
 export type ResourceContextState = {
     basePath: string;
     currentPage: number;
