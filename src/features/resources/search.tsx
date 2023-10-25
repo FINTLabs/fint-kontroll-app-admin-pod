@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Search} from "@navikt/ds-react";
 
 
-export const ResourcesSearchComponent = () => {
+export const ResourcesSearch = () => {
     const [searchString, setSearchString] = useState("")
 
     const handleSearch = () => {

@@ -12,7 +12,7 @@ const ResourcesInfoWrapper = styled.div`
     }
 `
 
-export const ResourcesHeaderComponent = () => {
+export const ResourcesHeader = () => {
     return (
         <ResourcesInfoWrapper>
             <h2>Ressursadmin</h2>

@@ -41,7 +41,7 @@ const PaginationWrapper = styled.div`
     margin-top: 1rem;
 `
 
-export const ResourcesTableComponent = () => {
+export const ResourcesTable = () => {
     const {
         currentPage,
         isLoading,

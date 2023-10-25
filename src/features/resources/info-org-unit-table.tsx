@@ -4,7 +4,7 @@ import {IResourceItem} from "../../Context/types";
 interface ResourceInfoOrgUnitTableComponentProps {
     validForOrgUnits: IResourceItem[]
 }
-export const ResourceInfoOrgUnitTableComponent = ({validForOrgUnits}: ResourceInfoOrgUnitTableComponentProps) => {
+export const ResourceInfoOrgUnitTable = ({validForOrgUnits}: ResourceInfoOrgUnitTableComponentProps) => {
     return (
         <Table id="org-unit-table">
             <Table.Header>

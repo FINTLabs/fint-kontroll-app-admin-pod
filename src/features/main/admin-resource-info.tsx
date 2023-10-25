@@ -1,8 +1,8 @@
-import { ResourcesInfoComponent } from "../resources/resource-info-component";
+import { ResourcesInfo } from "../resources/info";
 import {useContext, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import {ResourceContext} from "../../Context/resources-context";
-import {ResourceInfoOrgUnitTableComponent} from "../resources/resource-info-org-unit-table.component";
+import {ResourceInfoOrgUnitTable} from "../resources/info-org-unit-table";
 import styled from "styled-components";
 
 const ResourceInfoContainer = styled.div`
@@ -11,7 +11,7 @@ const ResourceInfoContainer = styled.div`
     gap: 2rem;
 `
 
-export const AdminResourceInfoComponent = () => {
+export const AdminResourceInfo = () => {
     const {basePath, getResourceById, resourceDetails} = useContext(ResourceContext)
     const {id} = useParams<string>()
 
@@ -29,8 +29,8 @@ export const AdminResourceInfoComponent = () => {
 
     return (
         <ResourceInfoContainer>
-            <ResourcesInfoComponent resourceDetails={resourceDetails} />
-            <ResourceInfoOrgUnitTableComponent validForOrgUnits={resourceDetails.validForOrgUnits} />
+            <ResourcesInfo resourceDetails={resourceDetails} />
+            <ResourceInfoOrgUnitTable validForOrgUnits={resourceDetails.validForOrgUnits} />
         </ResourceInfoContainer>
     )
 }

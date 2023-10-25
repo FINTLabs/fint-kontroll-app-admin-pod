@@ -21,7 +21,7 @@ interface ResourceInfoProps {
     resourceDetails: IResource
 }
 
-export const ResourcesInfoComponent = ({resourceDetails}: ResourceInfoProps) => {
+export const ResourcesInfo = ({resourceDetails}: ResourceInfoProps) => {
     const {
         resourceLimit,
         resourceName,
