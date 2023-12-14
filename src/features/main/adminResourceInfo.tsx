@@ -1,8 +1,8 @@
 import { ResourcesInfo } from "../resources/info";
 import {useContext, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import {ResourceContext} from "../../Context/resources-context";
-import {ResourceInfoOrgUnitTable} from "../resources/info-org-unit-table";
+import {ResourceContext} from "../../Context/resourcesContext";
+import {ResourceInfoOrgUnitTable} from "../resources/infoOrgUnitTable";
 import styled from "styled-components";
 
 const ResourceInfoContainer = styled.div`

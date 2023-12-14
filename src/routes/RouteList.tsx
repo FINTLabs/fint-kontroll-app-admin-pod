@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {AdminResourcesLanding} from "../features/main/admin-resources-landing";
-import {ResourceContext} from "../Context/resources-context";
-import {AdminResourceInfo} from "../features/main/admin-resource-info";
+import {AdminResourcesLanding} from "../features/main/adminResourcesLanding";
+import {ResourceContext} from "../Context/resourcesContext";
+import {AdminResourceInfo} from "../features/main/adminResourceInfo";
 
 const RouteList = () => {
     const {basePath} = useContext(ResourceContext);

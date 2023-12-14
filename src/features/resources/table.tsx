@@ -1,9 +1,9 @@
-import {Loader, Pagination, Select, Table} from "@navikt/ds-react";
+import {Button, Loader, Pagination, Select, Table} from "@navikt/ds-react";
 import React, {useContext} from "react";
 import {InformationSquareIcon} from '@navikt/aksel-icons';
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
-import {ResourceContext} from "../../Context/resources-context";
+import {NavLink, useNavigate} from "react-router-dom";
+import {ResourceContext} from "../../Context/resourcesContext";
 import {IResource} from "../../Context/types";
 
 const TableStyled = styled(Table)`
@@ -33,12 +33,12 @@ const LoaderStyled = styled(Loader)`
     margin: auto;
 `
 
+
 const PaginationWrapper = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    
-    margin-top: 1rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	gap: 1rem;
 `
 
 export const ResourcesTable = () => {
@@ -50,6 +50,8 @@ export const ResourcesTable = () => {
         setItemsPerPage,
         updateCurrentPage,
     } = useContext(ResourceContext)
+
+    const navigate = useNavigate()
 
     let paginatedData = resourcePage ? resourcePage.resources : null
 
@@ -89,9 +91,9 @@ export const ResourcesTable = () => {
                                     <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                     <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                     <Table.DataCell>
-                                        <NavLink to={`info/${resource.id}`} className="flex-center-vertically" id={`resource-${i}`}>
-                                            Se detaljer <InformationSquareIcon className="margin-left-1-x"/>
-                                        </NavLink>
+                                        <Button icon={<InformationSquareIcon />} iconPosition={"right"} onClick={() => navigate(`info/${resource.id}`)} id={`resource-${i}`} variant={"secondary"} role="link">
+                                            Detaljer
+                                        </Button>
                                     </Table.DataCell>
                                 </Table.Row>
                             )
@@ -113,7 +115,6 @@ export const ResourcesTable = () => {
                         page={currentPage}
                         onPageChange={updateCurrentPage}
                         count={Math.ceil(resourcePage?.totalItems / itemsPerPage)}
-                        siblingCount={itemsPerPage}
                         size="small"
                     />
                 }

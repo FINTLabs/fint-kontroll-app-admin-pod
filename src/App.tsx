@@ -1,6 +1,6 @@
 import React from 'react';
 import RouteList from "./routes/RouteList";
-import ResourceProvider from "./Context/resources-context";
+import ResourceProvider from "./Context/resourcesContext";
 
 function App() {
     return (
