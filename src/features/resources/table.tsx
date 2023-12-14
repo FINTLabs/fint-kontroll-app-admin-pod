@@ -2,7 +2,7 @@ import {Button, Loader, Pagination, Select, Table} from "@navikt/ds-react";
 import React, {useContext} from "react";
 import {InformationSquareIcon} from '@navikt/aksel-icons';
 import styled from "styled-components";
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {ResourceContext} from "../../Context/resourcesContext";
 import {IResource} from "../../Context/types";
 
