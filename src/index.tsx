@@ -6,6 +6,7 @@ import { makeServer } from "./miragejs/server"
 import {BrowserRouter} from "react-router-dom";
 import GlobalStyle from "./global-styles";
 import {GeneralProvider} from "./Context";
+import {ToastContainer} from "react-toastify";
 
 
 if (process.env.LOCAL_TEST === 'true') {
@@ -19,6 +20,7 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <GeneralProvider>
+                <ToastContainer autoClose={5000} newestOnTop={true} role="alert" />
                 <GlobalStyle />
                 <App/>
             </GeneralProvider>

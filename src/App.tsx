@@ -1,7 +1,7 @@
 import React from 'react';
 import RouteList from "./routes/RouteList";
 import ResourceProvider from "./Context/resourcesContext";
-import {GeneralProvider, useGeneral} from "./Context";
+import {useGeneral} from "./Context";
 import {LoaderStyled} from "./atoms/LoaderCenterex";
 
 function App() {

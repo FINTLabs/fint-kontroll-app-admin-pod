@@ -8,6 +8,7 @@ import {
 import ResourceRepository from "../repositories/ResourceRepository";
 import {ErrorResponse} from "react-router-dom";
 import {useGeneral} from "./index";
+import {toast} from "react-toastify";
 
 export const ResourceContext = createContext<ResourceContextState>(
     contextDefaultValues
@@ -19,14 +20,13 @@ type Props = {
 };
 
 const ResourceProvider = ({children}: Props) => {
-    // const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
     const [isLoading, setIsLoading] = useState(true)
     const [organisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
     const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
     const [resourceDetails, setResourceDetails] = useState<IResource | null>(contextDefaultValues.resourceDetails);
-    const [resourcePage, setResourcePage] = useState<IResourcePage | null>(contextDefaultValues.resourcePage);
+    const [resourcesPage, setResourcesPage] = useState<IResourcePage | null>(contextDefaultValues.resourcesPage);
     const [searchString] = useState<string>("");
     const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
     const [itemsPerPage, setItemsPerPage] = useState<number>(contextDefaultValues.itemsPerPage);
@@ -48,28 +48,26 @@ const ResourceProvider = ({children}: Props) => {
         getResources().catch(err => console.error(err))
     }, [basePath]);
 
-    useEffect(() => {
-        const getResourcePage = () => {
-            if (basePath) {
-                setIsLoading(true)
-                ResourceRepository.getResourcePage(basePath, currentPage, itemsPerPage, resourceType, selected, searchString, isAggregate)
-                    .then((response) => setResourcePage(response.data))
-                    .catch((err: ErrorResponse) => console.error(err))
-                    .finally(() => setIsLoading(false))
-            }
+    const getResourcePage = () => {
+        if (basePath) {
+            setIsLoading(true)
+            ResourceRepository.getResourcePage(basePath, currentPage, itemsPerPage, resourceType, selected, searchString, isAggregate)
+                .then((response) => setResourcesPage(response.data))
+                .catch((err: ErrorResponse) => console.error(err))
+                .finally(() => setIsLoading(false))
         }
+    }
 
-        if (searchString.length >= 3 || searchString.length === 0) {
-            getResourcePage();
-        }
-    }, [basePath, currentPage, itemsPerPage, resourceType, organisationUnitId, searchString, selected, isAggregate]);
-
-    const getResourceById = (uri: string) => {
+    const getResourceById = (basePath: string, id: string) => {
         setIsLoading(true)
-        ResourceRepository.getResourceById(uri)
+        ResourceRepository.getResourceById(basePath, id)
             .then((response) => {setResourceDetails(response.data)})
             .catch((err: ErrorResponse) => {
                 console.error(err);
+                toast.error("Klarte ikke hente ressursinformasjon.", {
+                    role: "alert"
+                })
+
             })
             .finally(() => setIsLoading(false))
     }
@@ -83,6 +81,7 @@ const ResourceProvider = ({children}: Props) => {
             value={{
                 currentPage,
                 getResourceById,
+                getResourcePage,
                 isAggregate,
                 isLoading,
                 itemsPerPage,
@@ -90,8 +89,9 @@ const ResourceProvider = ({children}: Props) => {
                 organisationUnitId,
                 resources,
                 resourceDetails,
-                resourcePage,
+                resourcesPage,
                 resourceType,
+                searchString,
                 selected,
                 setItemsPerPage,
                 setSelected,

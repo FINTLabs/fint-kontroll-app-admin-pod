@@ -53,7 +53,8 @@ export interface IConfiguration {
 export type ResourceContextState = {
     // basePath: string;
     currentPage: number;
-    getResourceById: (id: string) => void,
+    getResourceById: (basePath: string, id: string) => void,
+    getResourcePage: () => void,
     isAggregate: boolean,
     isLoading: boolean,
     itemsPerPage: number,
@@ -61,8 +62,9 @@ export type ResourceContextState = {
     organisationUnitId: number,
     resources: IResource[] | null;
     resourceDetails: IResource | null;
-    resourcePage: IResourcePage | null;
+    resourcesPage: IResourcePage | null;
     resourceType: string,
+    searchString: string,
     setIsAggregate: (isAggregate: boolean) => void;
     selected: number[];
     setItemsPerPage: (paginationSize: number) => void,
@@ -72,7 +74,8 @@ export type ResourceContextState = {
 
 export const contextDefaultValues: ResourceContextState = {
     currentPage: 1,
-    getResourceById(): void {},
+    getResourceById(basePath: string, id: string): void {},
+    getResourcePage(): void{},
     isAggregate: false,
     isLoading: true,
     itemsPerPage: 5,
@@ -81,8 +84,9 @@ export const contextDefaultValues: ResourceContextState = {
     organisationUnitId: 0,
     resources: [],
     resourceDetails: null,
-    resourcePage: null,
+    resourcesPage: null,
     resourceType: "",
+    searchString: "",
     selected: [],
     setItemsPerPage: (paginationSize: number) => void{},
     setSelected(selected: number[]): void {

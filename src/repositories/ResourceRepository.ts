@@ -9,7 +9,10 @@ const getResources = (basePath: string) => {
     const url = `${basePath === '/' ? '' : basePath}/api/resources`;
     return axios.get<IResource[]>(url);
 }
-const getResourceById = (uri: string) => axios.get<IResource>(uri);
+const getResourceById = (basePath: string, id: string) => {
+    const url = `${basePath === '/' ? '' : basePath}/api/resources/${id}`
+    return axios.get<IResource>(url)
+};
 
 const getResourcePage =
     (basePath: string, currentPage: number, itemsPerPage: number, userType: string, organisationUnitId: number[],

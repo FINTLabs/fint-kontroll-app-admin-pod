@@ -21,7 +21,7 @@ export const ResourceInfo = () => {
 
     useEffect(() => {
         if(id && !resourceDetails) {
-            getResourceById(`${basePath === '/' ? '' : basePath}/api/resources/${id}`)
+            getResourceById(basePath, id)
         }
     }, [basePath, getResourceById, id, resourceDetails])
 
