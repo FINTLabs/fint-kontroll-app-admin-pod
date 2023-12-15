@@ -1,4 +1,4 @@
-import { Button, Loader, Pagination, Select, Table } from "@navikt/ds-react";
+import { Button, Pagination, Select, Table } from "@navikt/ds-react";
 import React, { useContext, useEffect } from "react";
 import { InformationSquareIcon } from "@navikt/aksel-icons";
 import styled from "styled-components";
@@ -10,28 +10,17 @@ import { useGeneral } from "../../Context";
 const TableStyled = styled(Table)`
 	thead {
 		th:nth-child(-n + 2) {
-			width: 400px;
+			width: 33%;
 		}
 
 		th:nth-child(2 + n) {
-			width: 75px;
+			width: 10%;
 		}
 
 		th:last-child {
-			width: 125px;
+			width: 14%;
 		}
 	}
-
-	.loading-table {
-		td {
-			border-bottom: none;
-		}
-	}
-`;
-
-const LoaderStyled = styled(Loader)`
-	display: flex;
-	margin: auto;
 `;
 
 const PaginationWrapper = styled.div`
@@ -42,7 +31,10 @@ const PaginationWrapper = styled.div`
 `;
 
 export const AdminResourcesTable = () => {
+	const navigate = useNavigate();
+
 	const { basePath } = useGeneral();
+
 	const {
 		currentPage,
 		getResourcePage,
@@ -74,8 +66,6 @@ export const AdminResourcesTable = () => {
 		isAggregate,
 	]);
 
-	const navigate = useNavigate();
-
 	let paginatedData = resourcesPage ? resourcesPage.resources : null;
 
 	const handleChangeRowsPerPage = (
@@ -102,15 +92,9 @@ export const AdminResourcesTable = () => {
 					</Table.Row>
 				</Table.Header>
 				<Table.Body>
-					{isLoading && !resourcesPage ? (
-						<Table.Row key={1} className="loading-table">
-							<Table.DataCell colSpan={5}>
-								<LoaderStyled
-									size="3xlarge"
-									title="Laster"
-									className="loader"
-								/>
-							</Table.DataCell>
+					{!isLoading && !resourcesPage ? (
+						<Table.Row>
+							<Table.DataCell colSpan={5}></Table.DataCell>
 						</Table.Row>
 					) : (
 						paginatedData?.map((resource: IResource, i) => {
@@ -154,19 +138,19 @@ export const AdminResourcesTable = () => {
 				</Table.Body>
 			</TableStyled>
 
-			<PaginationWrapper>
-				<Select
-					label="Rader per side"
-					size="small"
-					onChange={handleChangeRowsPerPage}
-					defaultValue={itemsPerPage}
-				>
-					<option value={5}>5</option>
-					<option value={10}>10</option>
-					<option value={25}>25</option>
-					<option value={50}>50</option>
-				</Select>
-				{resourcesPage !== null && !isLoading && (
+			{resourcesPage !== null && !isLoading && (
+				<PaginationWrapper>
+					<Select
+						label="Rader per side"
+						size="small"
+						onChange={handleChangeRowsPerPage}
+						defaultValue={itemsPerPage}
+					>
+						<option value={5}>5</option>
+						<option value={10}>10</option>
+						<option value={25}>25</option>
+						<option value={50}>50</option>
+					</Select>
 					<Pagination
 						id="pagination"
 						page={currentPage}
@@ -176,8 +160,8 @@ export const AdminResourcesTable = () => {
 						)}
 						size="small"
 					/>
-				)}
-			</PaginationWrapper>
+				</PaginationWrapper>
+			)}
 		</>
 	);
 };
