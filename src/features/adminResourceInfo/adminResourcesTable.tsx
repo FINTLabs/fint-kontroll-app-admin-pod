@@ -94,7 +94,11 @@ export const AdminResourcesTable = () => {
 				<Table.Body>
 					{!isLoading && !resourcesPage ? (
 						<Table.Row>
-							<Table.DataCell colSpan={5}></Table.DataCell>
+							<Table.DataCell colSpan={5}>
+								{paginatedData?.length === 0
+									? "Tabellen ser ut til å være tom."
+									: "Tabellen kunne ikke laste."}
+							</Table.DataCell>
 						</Table.Row>
 					) : (
 						paginatedData?.map((resource: IResource, i) => {

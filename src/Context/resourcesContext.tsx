@@ -1,106 +1,135 @@
-import React, {createContext, ReactNode, useEffect, useState,} from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import {
-    contextDefaultValues,
-    IResource,
-    ResourceContextState,
-    IResourcePage
+	contextDefaultValues,
+	IResource,
+	ResourceContextState,
+	IResourcePage,
 } from "./types";
 import ResourceRepository from "../repositories/ResourceRepository";
-import {ErrorResponse} from "react-router-dom";
-import {useGeneral} from "./index";
-import {toast} from "react-toastify";
+import { ErrorResponse } from "react-router-dom";
+import { useGeneral } from "./index";
+import { toast } from "react-toastify";
 
-export const ResourceContext = createContext<ResourceContextState>(
-    contextDefaultValues
-);
+export const ResourceContext =
+	createContext<ResourceContextState>(contextDefaultValues);
 
 type Props = {
-    children: ReactNode[] | ReactNode;
-    basePath: string
+	children: ReactNode[] | ReactNode;
+	basePath: string;
 };
 
-const ResourceProvider = ({children}: Props) => {
-    const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
-    const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
-    const [isLoading, setIsLoading] = useState(true)
-    const [organisationUnitId] = useState<number>(contextDefaultValues.organisationUnitId);
-    const [resources, setResources] = useState<IResource[] | null>(contextDefaultValues.resources);
-    const [resourceDetails, setResourceDetails] = useState<IResource | null>(contextDefaultValues.resourceDetails);
-    const [resourcesPage, setResourcesPage] = useState<IResourcePage | null>(contextDefaultValues.resourcesPage);
-    const [searchString] = useState<string>("");
-    const [selected, setSelected] = useState<number[]>(contextDefaultValues.selected);
-    const [itemsPerPage, setItemsPerPage] = useState<number>(contextDefaultValues.itemsPerPage);
-    const [resourceType] = useState<string>(contextDefaultValues.resourceType);
+const ResourceProvider = ({ children }: Props) => {
+	const [currentPage, setCurrentPage] = useState<number>(
+		contextDefaultValues.currentPage,
+	);
+	const [isAggregate, setIsAggregate] = useState<boolean>(
+		contextDefaultValues.isAggregate,
+	);
+	const [isLoading, setIsLoading] = useState(true);
+	const [organisationUnitId] = useState<number>(
+		contextDefaultValues.organisationUnitId,
+	);
+	const [resources, setResources] = useState<IResource[] | null>(
+		contextDefaultValues.resources,
+	);
+	const [resourceDetails, setResourceDetails] = useState<IResource | null>(
+		contextDefaultValues.resourceDetails,
+	);
+	const [resourcesPage, setResourcesPage] = useState<IResourcePage | null>(
+		contextDefaultValues.resourcesPage,
+	);
+	const [searchString] = useState<string>("");
+	const [selected, setSelected] = useState<number[]>(
+		contextDefaultValues.selected,
+	);
+	const [itemsPerPage, setItemsPerPage] = useState<number>(
+		contextDefaultValues.itemsPerPage,
+	);
+	const [resourceType] = useState<string>(contextDefaultValues.resourceType);
+	const { basePath } = useGeneral();
 
-    const {basePath} = useGeneral()
+	useEffect(() => {
+		const getResources = async () => {
+			if (basePath) {
+				setIsLoading(true);
+				ResourceRepository.getResources(basePath)
+					.then((response) => {
+						setResources(response.data);
+					})
+					.catch((err) => console.error(err))
+					.finally(() => setIsLoading(false));
+			}
+		};
+		getResources().catch((err) => console.error(err));
+	}, [basePath]);
 
-    useEffect(() => {
-        const getResources = async () => {
-            if (basePath) {
-                setIsLoading(true)
-                ResourceRepository.getResources(basePath).then(
-                    (response) => {setResources(response.data)}
-                )
-                    .catch((err) => console.error(err))
-                    .finally(() => setIsLoading(false))
-            }
-        }
-        getResources().catch(err => console.error(err))
-    }, [basePath]);
+	const getResourcePage = () => {
+		if (basePath) {
+			setIsLoading(true);
+			ResourceRepository.getResourcePage(
+				basePath,
+				currentPage,
+				itemsPerPage,
+				resourceType,
+				selected,
+				searchString,
+				isAggregate,
+			)
+				.then((response) => setResourcesPage(response.data))
+				.catch((err: ErrorResponse) => {
+					console.error(err);
+					toast.error("Klarte ikke hente ressurslisten.", {
+						role: "alert",
+					});
+				})
+				.finally(() => setIsLoading(false));
+		}
+	};
 
-    const getResourcePage = () => {
-        if (basePath) {
-            setIsLoading(true)
-            ResourceRepository.getResourcePage(basePath, currentPage, itemsPerPage, resourceType, selected, searchString, isAggregate)
-                .then((response) => setResourcesPage(response.data))
-                .catch((err: ErrorResponse) => console.error(err))
-                .finally(() => setIsLoading(false))
-        }
-    }
+	const getResourceById = (basePath: string, id: string) => {
+		setIsLoading(true);
+		ResourceRepository.getResourceById(basePath, id)
+			.then((response) => {
+				setResourceDetails(response.data);
+			})
+			.catch((err: ErrorResponse) => {
+				console.error(err);
+				toast.error("Klarte ikke hente ressursinformasjon.", {
+					role: "alert",
+				});
+			})
+			.finally(() => setIsLoading(false));
+	};
 
-    const getResourceById = (basePath: string, id: string) => {
-        setIsLoading(true)
-        ResourceRepository.getResourceById(basePath, id)
-            .then((response) => {setResourceDetails(response.data)})
-            .catch((err: ErrorResponse) => {
-                console.error(err);
-                toast.error("Klarte ikke hente ressursinformasjon.", {
-                    role: "alert"
-                })
+	const updateCurrentPage = (currentPage: number) => {
+		setCurrentPage(currentPage);
+	};
 
-            })
-            .finally(() => setIsLoading(false))
-    }
-
-    const updateCurrentPage = (currentPage: number) => {
-        setCurrentPage(currentPage)
-    }
-
-    return (
-        <ResourceContext.Provider
-            value={{
-                currentPage,
-                getResourceById,
-                getResourcePage,
-                isAggregate,
-                isLoading,
-                itemsPerPage,
-                setIsLoading,
-                organisationUnitId,
-                resources,
-                resourceDetails,
-                resourcesPage,
-                resourceType,
-                searchString,
-                selected,
-                setItemsPerPage,
-                setSelected,
-                setIsAggregate,
-                updateCurrentPage,
-            }}
-        >
-            {children}
-        </ResourceContext.Provider>
-    );
+	return (
+		<ResourceContext.Provider
+			value={{
+				currentPage,
+				getResourceById,
+				getResourcePage,
+				isAggregate,
+				isLoading,
+				itemsPerPage,
+				setIsLoading,
+				organisationUnitId,
+				resources,
+				resourceDetails,
+				resourcesPage,
+				resourceType,
+				searchString,
+				selected,
+				setItemsPerPage,
+				setSelected,
+				setIsAggregate,
+				updateCurrentPage,
+			}}
+		>
+			{children}
+		</ResourceContext.Provider>
+	);
 };
 export default ResourceProvider;

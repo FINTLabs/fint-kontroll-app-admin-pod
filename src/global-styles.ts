@@ -1,5 +1,6 @@
 import "@navikt/ds-css";
-import { createGlobalStyle } from 'styled-components';
+import "react-toastify/dist/ReactToastify.css";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     /* Aligning and positioning */
@@ -7,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         align-items: center;
     }
-    
+
     /** General spacing declarations **/
     .margin-top-1-x {
         margin-top: 4px;
@@ -22,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     .margin-bottom-2-x {
         margin-bottom: 8px;
     }
-    
+
     .margin-left-1-x {
         margin-left: 4px;
     }
