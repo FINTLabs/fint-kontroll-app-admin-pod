@@ -88,7 +88,9 @@ export const AdminResourcesTable = () => {
 						<Table.HeaderCell scope="col" align="right">
 							Antall i bruk
 						</Table.HeaderCell>
-						<Table.HeaderCell scope="col"></Table.HeaderCell>
+						<Table.HeaderCell scope="col" align={"center"}>
+							Se detaljer
+						</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
 				<Table.Body>
@@ -116,7 +118,7 @@ export const AdminResourcesTable = () => {
 									<Table.DataCell align="right">
 										{resource.resourceLimit}
 									</Table.DataCell>
-									<Table.DataCell>
+									<Table.DataCell align={"center"}>
 										<Button
 											icon={
 												<InformationSquareIcon
