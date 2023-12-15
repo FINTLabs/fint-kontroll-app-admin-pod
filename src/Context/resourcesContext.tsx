@@ -29,9 +29,6 @@ const ResourceProvider = ({ children }: Props) => {
 	const [organisationUnitId] = useState<number>(
 		contextDefaultValues.organisationUnitId,
 	);
-	const [resources, setResources] = useState<IResource[] | null>(
-		contextDefaultValues.resources,
-	);
 	const [resourceDetails, setResourceDetails] = useState<IResource | null>(
 		contextDefaultValues.resourceDetails,
 	);
@@ -47,21 +44,6 @@ const ResourceProvider = ({ children }: Props) => {
 	);
 	const [resourceType] = useState<string>(contextDefaultValues.resourceType);
 	const { basePath } = useGeneral();
-
-	useEffect(() => {
-		const getResources = async () => {
-			if (basePath) {
-				setIsLoading(true);
-				ResourceRepository.getResources(basePath)
-					.then((response) => {
-						setResources(response.data);
-					})
-					.catch((err) => console.error(err))
-					.finally(() => setIsLoading(false));
-			}
-		};
-		getResources().catch((err) => console.error(err));
-	}, [basePath]);
 
 	const getResourcePage = () => {
 		if (basePath) {
@@ -116,7 +98,6 @@ const ResourceProvider = ({ children }: Props) => {
 				itemsPerPage,
 				setIsLoading,
 				organisationUnitId,
-				resources,
 				resourceDetails,
 				resourcesPage,
 				resourceType,

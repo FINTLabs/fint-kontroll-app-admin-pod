@@ -1,60 +1,63 @@
 import axios from "axios";
-import {IConfiguration, IResource, IResourcePage} from "../Context/types";
+import { IConfiguration, IResource, IResourcePage } from "../Context/types";
 
 const getBaseUrl = () => {
-    return axios.get<IConfiguration>('api/layout/configuration');
-}
-
-const getResources = (basePath: string) => {
-    const url = `${basePath === '/' ? '' : basePath}/api/resources`;
-    return axios.get<IResource[]>(url);
-}
-const getResourceById = (basePath: string, id: string) => {
-    const url = `${basePath === '/' ? '' : basePath}/api/resources/${id}`
-    return axios.get<IResource>(url)
+	return axios.get<IConfiguration>("api/layout/configuration");
 };
 
-const getResourcePage =
-    (basePath: string, currentPage: number, itemsPerPage: number, userType: string, organisationUnitId: number[],
-     searchString: string, isAggregated: boolean) => {
-        const baseUrl = `${basePath === '/' ? '' : basePath}/api/resources`;
-        let queryParams = [];
+const getResourceById = (basePath: string, id: string) => {
+	const url = `${basePath === "/" ? "" : basePath}/api/resources/${id}`;
+	return axios.get<IResource>(url);
+};
 
-        const sanitizedQueryString = searchString.trim();
-        if (sanitizedQueryString.length !== 0) {
-            queryParams.push(`search=${searchString}`);
-        }
+const getResourcePage = (
+	basePath: string,
+	currentPage: number,
+	itemsPerPage: number,
+	userType: string,
+	organisationUnitId: number[],
+	searchString: string,
+	isAggregated: boolean,
+) => {
+	const baseUrl = `${basePath === "/" ? "" : basePath}/api/resources`;
+	let queryParams = [];
 
-        if (userType) {
-            queryParams.push(`userType=${userType}`);
-        }
+	const sanitizedQueryString = searchString.trim();
+	if (sanitizedQueryString.length !== 0) {
+		queryParams.push(`search=${searchString}`);
+	}
 
-        if (isAggregated) {
-            queryParams.push(`aggroles=${isAggregated}`);
-        }
+	if (userType) {
+		queryParams.push(`userType=${userType}`);
+	}
 
-        if (organisationUnitId && organisationUnitId.length > 0) {
-            queryParams.push(`orgUnits=${organisationUnitId}`);
-        }
+	if (isAggregated) {
+		queryParams.push(`aggroles=${isAggregated}`);
+	}
 
-        if (currentPage) {
-            queryParams.push(`page=${currentPage-1}`);
-        }
+	if (organisationUnitId && organisationUnitId.length > 0) {
+		queryParams.push(`orgUnits=${organisationUnitId}`);
+	}
 
-        if (itemsPerPage) {
-            queryParams.push(`size=${itemsPerPage}`);
-        }
+	if (currentPage) {
+		queryParams.push(`page=${currentPage - 1}`);
+	}
 
-        const url = `${baseUrl}${queryParams.length > 0 ? '?' : ''}${queryParams.join('&')}`;
+	if (itemsPerPage) {
+		queryParams.push(`size=${itemsPerPage}`);
+	}
 
-        return axios.get<IResourcePage>(url);
-    }
+	const url = `${baseUrl}${
+		queryParams.length > 0 ? "?" : ""
+	}${queryParams.join("&")}`;
+
+	return axios.get<IResourcePage>(url);
+};
 
 const ResourceRepository = {
-    getBaseUrl,
-    getResources,
-    getResourcePage,
-    getResourceById
+	getBaseUrl,
+	getResourcePage,
+	getResourceById,
 };
 
 export default ResourceRepository;
