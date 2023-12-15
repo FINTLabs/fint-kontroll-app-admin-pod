@@ -5,6 +5,7 @@ import App from './App';
 import { makeServer } from "./miragejs/server"
 import {BrowserRouter} from "react-router-dom";
 import GlobalStyle from "./global-styles";
+import {GeneralProvider} from "./Context";
 
 
 if (process.env.LOCAL_TEST === 'true') {
@@ -17,8 +18,10 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <GlobalStyle />
-            <App/>
+            <GeneralProvider>
+                <GlobalStyle />
+                <App/>
+            </GeneralProvider>
         </BrowserRouter>
     </React.StrictMode>
 );

@@ -41,7 +41,7 @@ const PaginationWrapper = styled.div`
 	gap: 1rem;
 `
 
-export const ResourcesTable = () => {
+export const AdminResourcesTable = () => {
     const {
         currentPage,
         isLoading,
@@ -91,7 +91,7 @@ export const ResourcesTable = () => {
                                     <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                     <Table.DataCell align="right">{resource.resourceLimit}</Table.DataCell>
                                     <Table.DataCell>
-                                        <Button icon={<InformationSquareIcon />} iconPosition={"right"} onClick={() => navigate(`info/${resource.id}`)} id={`resource-${i}`} variant={"secondary"} role="link">
+                                        <Button icon={<InformationSquareIcon title="Informasjonsikon" fontSize="1.5rem" />} iconPosition={"right"} onClick={() => navigate(`info/${resource.id}`)} id={`resource-${i}`} variant={"secondary"} role="link">
                                             Detaljer
                                         </Button>
                                     </Table.DataCell>

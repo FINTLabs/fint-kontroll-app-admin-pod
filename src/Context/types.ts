@@ -1,5 +1,4 @@
 export type ResourcesContextState = {
-    basePath: string;
     page: IResourcePage | null;
     currentPage: number;
     size: number;
@@ -52,7 +51,7 @@ export interface IConfiguration {
 }
 
 export type ResourceContextState = {
-    basePath: string;
+    // basePath: string;
     currentPage: number;
     getResourceById: (id: string) => void,
     isAggregate: boolean,
@@ -72,7 +71,6 @@ export type ResourceContextState = {
 };
 
 export const contextDefaultValues: ResourceContextState = {
-    basePath: "/",
     currentPage: 1,
     getResourceById(): void {},
     isAggregate: false,

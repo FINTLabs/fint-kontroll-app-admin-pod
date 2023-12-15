@@ -1,4 +1,4 @@
-import {BodyShort, Heading, Panel} from "@navikt/ds-react";
+import {BodyShort, Box, Heading} from "@navikt/ds-react";
 import styled from "styled-components";
 import {IResource} from "../../Context/types";
 
@@ -21,7 +21,7 @@ interface ResourceInfoProps {
     resourceDetails: IResource
 }
 
-export const ResourcesInfo = ({resourceDetails}: ResourceInfoProps) => {
+export const ResourceDetails = ({resourceDetails}: ResourceInfoProps) => {
     const {
         resourceLimit,
         resourceName,
@@ -36,10 +36,11 @@ export const ResourcesInfo = ({resourceDetails}: ResourceInfoProps) => {
 
     return (
         <div>
-            <Panel border={true}>
+            <Box borderWidth={"1"} padding={"4"}>
                 <Heading size="large" level="2">
                     {resourceName}
                 </Heading>
+
                 <ListStyled id="resource-info">
                     <li>
                         <Heading size="xsmall" level="3">Tilgangstype</Heading>
@@ -89,7 +90,7 @@ export const ResourcesInfo = ({resourceDetails}: ResourceInfoProps) => {
                         <BodyShort textColor="subtle">{validForRoles.map(role => role)}</BodyShort>
                     </li>
                 </ListStyled>
-            </Panel>
+            </Box>
         </div>
     )
 }

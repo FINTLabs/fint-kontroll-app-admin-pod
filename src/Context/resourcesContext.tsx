@@ -7,6 +7,7 @@ import {
 } from "./types";
 import ResourceRepository from "../repositories/ResourceRepository";
 import {ErrorResponse} from "react-router-dom";
+import {useGeneral} from "./index";
 
 export const ResourceContext = createContext<ResourceContextState>(
     contextDefaultValues
@@ -14,10 +15,11 @@ export const ResourceContext = createContext<ResourceContextState>(
 
 type Props = {
     children: ReactNode[] | ReactNode;
+    basePath: string
 };
 
 const ResourceProvider = ({children}: Props) => {
-    const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
+    // const [basePath, setBasePath] = useState<string>(contextDefaultValues.basePath);
     const [currentPage, setCurrentPage] = useState<number>(contextDefaultValues.currentPage);
     const [isAggregate, setIsAggregate] = useState<boolean>(contextDefaultValues.isAggregate);
     const [isLoading, setIsLoading] = useState(true)
@@ -30,21 +32,7 @@ const ResourceProvider = ({children}: Props) => {
     const [itemsPerPage, setItemsPerPage] = useState<number>(contextDefaultValues.itemsPerPage);
     const [resourceType] = useState<string>(contextDefaultValues.resourceType);
 
-
-
-
-    useEffect(() => {
-        const getBasePath = async () => {
-            setIsLoading(true)
-            ResourceRepository.getBaseUrl()
-                .then((response) => {setBasePath(response.data.basePath)})
-                .catch((err: ErrorResponse) => {
-                    console.log(err);
-                })
-                .finally(() => setIsLoading(false))
-        }
-        getBasePath()
-    }, [])
+    const {basePath} = useGeneral()
 
     useEffect(() => {
         const getResources = async () => {
@@ -93,7 +81,6 @@ const ResourceProvider = ({children}: Props) => {
     return (
         <ResourceContext.Provider
             value={{
-                basePath,
                 currentPage,
                 getResourceById,
                 isAggregate,
