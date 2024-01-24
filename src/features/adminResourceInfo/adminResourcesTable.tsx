@@ -82,12 +82,12 @@ export const AdminResourcesTable = () => {
 					<Table.Row>
 						<Table.HeaderCell scope="col">Ressurs</Table.HeaderCell>
 						<Table.HeaderCell scope="col">Type</Table.HeaderCell>
-						<Table.HeaderCell scope="col" align="right">
+						{/*<Table.HeaderCell scope="col" align="right">
 							Antall totalt
 						</Table.HeaderCell>
 						<Table.HeaderCell scope="col" align="right">
 							Antall i bruk
-						</Table.HeaderCell>
+						</Table.HeaderCell>*/}
 						<Table.HeaderCell scope="col" align={"center"}>
 							Se detaljer
 						</Table.HeaderCell>
@@ -112,12 +112,12 @@ export const AdminResourcesTable = () => {
 									<Table.DataCell>
 										{resource.resourceType}
 									</Table.DataCell>
-									<Table.DataCell align="right">
+									{/*<Table.DataCell align="right">
 										{resource.resourceLimit}
 									</Table.DataCell>
 									<Table.DataCell align="right">
 										{resource.resourceLimit}
-									</Table.DataCell>
+									</Table.DataCell>*/}
 									<Table.DataCell align={"center"}>
 										<Button
 											icon={

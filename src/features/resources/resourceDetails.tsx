@@ -28,7 +28,7 @@ export const ResourceDetails = ({ resourceDetails }: ResourceInfoProps) => {
 		applicationAccessRole,
 		applicationAccessType,
 		platform,
-		resourceLimit,
+		//resourceLimit,
 		resourceName,
 		resourceType,
 		resourceOwnerOrgUnitName,
@@ -49,28 +49,28 @@ export const ResourceDetails = ({ resourceDetails }: ResourceInfoProps) => {
 						</Heading>
 						<BodyShort textColor="subtle">{accessType}</BodyShort>
 					</li>
-					<li>
+					{/*<li>
 						<Heading size="xsmall" level="3">
 							Total antall til tildeling
 						</Heading>
 						<BodyShort textColor="subtle">
 							{resourceLimit}
 						</BodyShort>
-					</li>
+					</li>*/}
 					<li>
 						<Heading size="xsmall" level="3">
 							Ressurstype
 						</Heading>
 						<BodyShort textColor="subtle">{resourceType}</BodyShort>
 					</li>
-					<li>
+					{/*<li>
 						<Heading size="xsmall" level="3">
 							Antall brukt av denne ressursen
 						</Heading>
 						<BodyShort textColor="subtle">
 							{resourceLimit}
 						</BodyShort>
-					</li>
+					</li>*/}
 					<li>
 						<Heading size="xsmall" level="3">
 							Applikasjonstilgangstype
