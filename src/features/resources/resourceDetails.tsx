@@ -1,6 +1,6 @@
-import { BodyShort, Box, Heading } from "@navikt/ds-react";
+import {BodyShort, Box, Heading} from "@navikt/ds-react";
 import styled from "styled-components";
-import { IResource } from "../../Context/types";
+import {IResource} from "../../Context/types";
 
 const ListStyled = styled.ul`
 	display: flex;
@@ -22,10 +22,10 @@ interface ResourceInfoProps {
 	resourceDetails: IResource;
 }
 
-export const ResourceDetails = ({ resourceDetails }: ResourceInfoProps) => {
+export const ResourceDetails = ({resourceDetails}: ResourceInfoProps) => {
 	const {
 		resourceId,
-identityProviderGroupName,
+		identityProviderGroupName,
 		accessType,
 		applicationAccessRole,
 		applicationAccessType,
@@ -47,11 +47,10 @@ identityProviderGroupName,
 				<ListStyled id="resource-info">
 					<li>
 						<Heading size="xsmall" level="3">
-							Ressurs ID
+							Gruppenavn Entra ID
 						</Heading>
-						<BodyShort textColor="subtle">{resourceId}</BodyShort>
+						<BodyShort textColor="subtle">{identityProviderGroupName}</BodyShort>
 					</li>
-
 					<li>
 						<Heading size="xsmall" level="3">
 							Tilgangstype
@@ -60,10 +59,11 @@ identityProviderGroupName,
 					</li>
 					<li>
 						<Heading size="xsmall" level="3">
-							Gruppenavn Entra ID
+							KildesystemId
 						</Heading>
-						<BodyShort textColor="subtle">{identityProviderGroupName}</BodyShort>
+						<BodyShort textColor="subtle">{resourceId}</BodyShort>
 					</li>
+
 					{/*<li>
 						<Heading size="xsmall" level="3">
 							Total antall til tildeling
