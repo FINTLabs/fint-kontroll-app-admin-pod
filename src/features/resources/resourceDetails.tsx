@@ -24,6 +24,8 @@ interface ResourceInfoProps {
 
 export const ResourceDetails = ({ resourceDetails }: ResourceInfoProps) => {
 	const {
+		resourceId,
+identityProviderGroupName,
 		accessType,
 		applicationAccessRole,
 		applicationAccessType,
@@ -45,9 +47,22 @@ export const ResourceDetails = ({ resourceDetails }: ResourceInfoProps) => {
 				<ListStyled id="resource-info">
 					<li>
 						<Heading size="xsmall" level="3">
+							Ressurs ID
+						</Heading>
+						<BodyShort textColor="subtle">{resourceId}</BodyShort>
+					</li>
+
+					<li>
+						<Heading size="xsmall" level="3">
 							Tilgangstype
 						</Heading>
 						<BodyShort textColor="subtle">{accessType}</BodyShort>
+					</li>
+					<li>
+						<Heading size="xsmall" level="3">
+							Gruppenavn Entra ID
+						</Heading>
+						<BodyShort textColor="subtle">{identityProviderGroupName}</BodyShort>
 					</li>
 					{/*<li>
 						<Heading size="xsmall" level="3">

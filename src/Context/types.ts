@@ -18,6 +18,7 @@ export interface IResource {
 	applicationAccessType: string;
 	id: number;
 	platform: [];
+	identityProviderGroupName: string;
 	resourceId: string;
 	resourceLimit: number;
 	resourceName: string;
